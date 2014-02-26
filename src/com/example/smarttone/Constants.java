@@ -9,7 +9,7 @@ public class Constants {
 	public static final Map<String, Integer> eventLevels = new HashMap<String, Integer>();
 	static{
 		eventLevels.put("conference", 1);
-		eventLevels.put("meeting", 1);
+		eventLevels.put("meeting", 7);
 		eventLevels.put("lecture", 1);
 		eventLevels.put("concert", 7);
 		eventLevels.put("movie", 5);

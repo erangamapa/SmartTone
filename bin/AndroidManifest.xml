@@ -7,7 +7,9 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="18" />
-
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -33,5 +35,5 @@
             android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
-
+    
 </manifest>

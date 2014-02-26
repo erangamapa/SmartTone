@@ -6,8 +6,6 @@ import com.example.smarttone.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
-import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,6 +49,9 @@ public class FullscreenActivity extends Activity {
 	 * The instance of the {@link SystemUiHider} for this activity.
 	 */
 	private SystemUiHider mSystemUiHider;
+	
+	//Required timers
+	private Timer calendarTimer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +123,7 @@ public class FullscreenActivity extends Activity {
 		Switch switch1 = (Switch) findViewById(R.id.switch1);
 		Switch switch2 = (Switch) findViewById(R.id.switch2);
 		Switch switch3 = (Switch) findViewById(R.id.switch3);
+		Switch switch4 = (Switch) findViewById(R.id.switch4);
 		
 		switch1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -139,18 +141,29 @@ public class FullscreenActivity extends Activity {
 					boolean isChecked) {
 				// TODO Auto-generated method stub
 				if(isChecked){
-					Timer timer = new Timer();
+					calendarTimer = new Timer();
 					CalendarTimerTask calendarTimerTask = new CalendarTimerTask();
 					calendarTimerTask.setContext(getApplicationContext());
-					
-					timer.schedule(calendarTimerTask, 10000, Constants.calender_read_duration);
-					
+					calendarTimer.schedule(calendarTimerTask, 10000, Constants.calender_read_duration);
+				}
+				else{
+					calendarTimer.cancel();
 				}
 
 			}
 		});
 
 		switch3.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		
+		switch4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,

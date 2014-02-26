@@ -1,7 +1,6 @@
 package com.example.smarttone;
 
-import java.util.Iterator;
-import java.util.Set;
+import java.util.Map;
 import java.util.TimerTask;
 
 import android.content.ContentResolver;
@@ -14,26 +13,22 @@ public class CalendarTimerTask extends TimerTask {
 	Context mContext;
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		AudioManager audioManager =  (AudioManager)this.mContext.getSystemService(Context.AUDIO_SERVICE);
 		ContentResolver contentResolver = mContext.getContentResolver(); 
 		long ntime = System.currentTimeMillis();
-		 Cursor cursr = contentResolver.query(Uri.parse("content://com.android.calendar/events"), 
-		 new String[]{ "calendar_id", "title", "description", "dtstart", "dtend", "eventLocation" }, 
-		 "calendar_id=1", null, null); 
-		 cursr.moveToFirst(); 
-		 for (int i = 0; i < cursr.getCount(); i++) {
-			String desc = cursr.getString(1).toLowerCase();
-			if ((cursr.getLong(3) < ntime) && (ntime < cursr.getLong(4))) {
-				String[] parts = desc.split("\\s+");
-				for(String item : parts){
-					if(Constants.eventLevels.get(item) != null){
-						audioManager.setStreamVolume(AudioManager.STREAM_RING, Constants.eventLevels.get(item), AudioManager.FLAG_SHOW_UI);
-					}
-				}
-            } 
-			cursr.moveToNext();
+		Cursor cursor = contentResolver.query(Uri.parse("content://com.android.calendar/events"), 
+		(new String[] { "calendar_id", "title", "description", "dtstart", "dtend", "eventTimezone", "eventLocation" }), 
+		"( dtstart <" + ntime + " and dtend >" + ntime + ")", null, "dtstart ASC");
+		
+		if(cursor.moveToFirst()){
+			String title = cursor.getString(1).toLowerCase();
+			for (Map.Entry<String, Integer> entry : Constants.eventLevels.entrySet()) {
+			    if(title.contains(entry.getKey())){
+			    	audioManager.setStreamVolume(AudioManager.STREAM_RING, entry.getValue(), AudioManager.FLAG_SHOW_UI);
+			    }
+			}
 		}
+		
 	}
 	
 	public void setContext(Context context){

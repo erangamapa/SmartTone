@@ -63,10 +63,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int fullscreen_content_controls=0x7f0b0001;
         public static final int imageView1=0x7f0b0007;
         public static final int imageView2=0x7f0b0008;
-        public static final int seekBar1=0x7f0b0006;
         public static final int switch1=0x7f0b0003;
         public static final int switch2=0x7f0b0004;
         public static final int switch3=0x7f0b0005;
+        public static final int switch4=0x7f0b0006;
     }
     public static final class layout {
         public static final int activity_fullscreen=0x7f030000;

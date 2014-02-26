@@ -74,12 +74,15 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="300dp"
         android:text="Location" />
-
-    <SeekBar
-        android:id="@+id/seekBar1"
-        android:layout_width="match_parent"
+    
+    <Switch
+        android:id="@+id/switch4"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" 
-        android:max="10"/>
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="400dp"
+        android:text="Movement" />
+
+
 
 </FrameLayout>
