@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
         	    }
         	  }
         });
+        VolumeHandler.init(getApplicationContext());
         Handler mHandler = new Handler();
         Runnable mUpdateTimeTask = new Runnable() {
      	   public void run() {

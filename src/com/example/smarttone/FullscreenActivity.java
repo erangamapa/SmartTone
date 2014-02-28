@@ -6,6 +6,7 @@ import com.example.smarttone.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -118,7 +119,7 @@ public class FullscreenActivity extends Activity {
 				}
 			}
 		});
-		
+				
 		//Setting up listners for switches
 		Switch switch1 = (Switch) findViewById(R.id.switch1);
 		Switch switch2 = (Switch) findViewById(R.id.switch2);
@@ -144,7 +145,7 @@ public class FullscreenActivity extends Activity {
 					calendarTimer = new Timer();
 					CalendarTimerTask calendarTimerTask = new CalendarTimerTask();
 					calendarTimerTask.setContext(getApplicationContext());
-					calendarTimer.schedule(calendarTimerTask, 10000, Constants.calender_read_duration);
+					calendarTimer.schedule(calendarTimerTask, 10000, Parameters.calender_read_duration);
 				}
 				else{
 					calendarTimer.cancel();
