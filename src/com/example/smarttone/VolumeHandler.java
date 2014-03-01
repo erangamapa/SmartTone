@@ -14,9 +14,16 @@ public class VolumeHandler {
 		maxVolLevel = mgr.getStreamMaxVolume(AudioManager.STREAM_RING);
 	}
 
-	public static void setVolLevel(int level) {
-		mgr.setStreamVolume(AudioManager.STREAM_RING, level, AudioManager.FLAG_SHOW_UI);
+	public static void setVolLevel(int level, String type) {
+		int levelToCommit = volumeLevel(level,type);
+		mgr.setStreamVolume(AudioManager.STREAM_RING, levelToCommit, AudioManager.FLAG_SHOW_UI);
 	}
+	
+	// select actuall volume level based on GPS,noise, calander
+	private static int volumeLevel(int level, String type){
+		return 0;
+	}
+	
 
 	public static int getMaxVolLevel() {
 		return maxVolLevel;

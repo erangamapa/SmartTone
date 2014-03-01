@@ -37,6 +37,10 @@
             android:theme="@style/FullscreenTheme" 
             android:screenOrientation="portrait">
         </activity>
+        <service
+            android:name=".NoiseLevelMonitor"
+            android:exported="false"/>
+        
     </application>
     
 </manifest>

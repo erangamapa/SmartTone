@@ -16,4 +16,7 @@ public class Constants {
 		eventLevels.put("drama", 5);
 		eventLevels.put("party", 7);
 	}
+	public static final String NOISE="noise level Adapter";
+	public static final String CALENDER_TASK="calender timer task";
+	public static final String GPS_TASK="GPS tak";
 }

@@ -23,7 +23,7 @@ public class CalendarTimerTask extends TimerTask {
 			String title = cursor.getString(1).toLowerCase();
 			for (Map.Entry<String, Integer> entry : Parameters.eventLevels.entrySet()) {
 			    if(title.contains(entry.getKey())){
-			    	VolumeHandler.setVolLevel(entry.getValue());
+			    	VolumeHandler.setVolLevel(entry.getValue(),Constants.CALENDER_TASK);
 			    }
 			}
 		}
