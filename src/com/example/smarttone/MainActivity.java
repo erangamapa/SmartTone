@@ -1,12 +1,21 @@
 package com.example.smarttone;
 
+
+import com.example.smarttone.ActivityUtils.REQUEST_TYPE;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
+import android.support.v4.content.LocalBroadcastManager;
+import android.text.Spanned;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
@@ -48,14 +57,13 @@ public class MainActivity extends Activity {
     }
     
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    
+      
+
     
 }
