@@ -30,6 +30,8 @@ import android.content.SharedPreferences.Editor;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import android.test.ActivityTestCase;
+import android.test.ActivityUnitTestCase;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -57,6 +59,8 @@ public class ActivityRecognitionIntentService extends IntentService {
     private SharedPreferences mPrefs;
     
     private Handler handler;
+    
+    private static int lastActivity = -1;
 
     public ActivityRecognitionIntentService() {
         // Set the label for the service's background thread
@@ -97,15 +101,26 @@ public class ActivityRecognitionIntentService extends IntentService {
             // Get the type of activity
             int activityType = mostProbableActivity.getType();
             
-            final String activity = getNameFromType(activityType);
+            if(activityType != lastActivity){
             
-                        
-            handler.post(new Runnable() {
-            	   @Override
-            	   public void run() {
-            	      Toast.makeText(getApplicationContext(), activity, Toast.LENGTH_SHORT).show();
-            	   }
-            	});
+	            final String activity = getNameFromType(activityType);
+	            
+	            final int volumeLevel = Constants.activityLevels.get(activity);
+	            
+	            VolumeHandler.setVolLevel(volumeLevel, Constants.ACTIVIY_TASK);
+	            
+	            lastActivity = activityType;
+	                        
+	            handler.post(new Runnable() {
+	            	   @Override
+	            	   public void run() {
+	            	      Toast.makeText(getApplicationContext(), activity + " - "+ volumeLevel, Toast.LENGTH_SHORT).show();
+	            	   }
+	            	});
+	            
+	            
+	            
+            }
             
 
            /* // Get the confidence percentage for the most probable activity
