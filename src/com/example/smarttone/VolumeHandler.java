@@ -21,7 +21,7 @@ public class VolumeHandler {
 	
 	// select actuall volume level based on GPS,noise, calander
 	private static int volumeLevel(int level, String type){
-		return 0;
+		return level;
 	}
 	
 
