@@ -115,6 +115,7 @@ public class ActivityRecognitionIntentService extends IntentService {
 	            	   @Override
 	            	   public void run() {
 	            	      Toast.makeText(getApplicationContext(), activity + " - "+ volumeLevel, Toast.LENGTH_SHORT).show();
+	            	      sendNotification("", "Activity Recognition Profile - " + activity);
 	            	   }
 	            	});
 	            
@@ -157,7 +158,7 @@ public class ActivityRecognitionIntentService extends IntentService {
      * Post a notification to the user. The notification prompts the user to click it to
      * open the device's GPS settings
      */
-    private void sendNotification() {
+    private void sendNotification(String title, String text) {
 
         // Create a notification builder that's compatible with platforms >= version 4
         NotificationCompat.Builder builder =
@@ -165,11 +166,11 @@ public class ActivityRecognitionIntentService extends IntentService {
 
         // Set the title, text, and icon
         builder.setContentTitle(getString(R.string.app_name))
-               .setContentText(getString(R.string.turn_on_GPS))
-               .setSmallIcon(R.drawable.ic_notification)
+               .setContentText(text)
+               .setSmallIcon(R.drawable.ic_notification);
 
                // Get the Intent that starts the Location settings panel
-               .setContentIntent(getContentIntent());
+               //.setContentIntent(getContentIntent());
 
         // Get an instance of the Notification Manager
         NotificationManager notifyManager = (NotificationManager)
